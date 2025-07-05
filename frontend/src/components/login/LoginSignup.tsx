@@ -52,11 +52,13 @@ const LoginSignup: React.FC = () => {
 
   try {
     const res = await axios.post(`${API_URL}/register`, {
-      login: signupData.login,
-      email: signupData.email,
-      password: signupData.password,
-      role: signupData.role.toLowerCase(),
-    });
+  login: signupData.login,
+  email: signupData.email,
+  password: signupData.password,
+  role: signupData.role.toLowerCase(),
+  firstname: signupData.firstname,
+  lastname: signupData.lastname
+});
 
    toast.success('Inscription réussie ✅', {
   className: 'toast-success-custom',
@@ -123,7 +125,7 @@ const LoginSignup: React.FC = () => {
               <Form.Label>S'inscrire en tant que</Form.Label>
               <Form.Control as="select" name="role" value={signupData.role} onChange={handleSignupChange}>
                 <option>Client</option>
-                <option>Vendeur</option>
+                <option>Artisan</option>
               </Form.Control>
             </Form.Group>
             <Form.Group>

@@ -1,7 +1,8 @@
-const db = require('../config/db'); // your MySQL connection
+const db = require('../config/db');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
+// LOGIN
 exports.loginUser = async (req, res) => {
   const { login, password } = req.body;
 
@@ -12,13 +13,14 @@ exports.loginUser = async (req, res) => {
     );
 
     if (userRows.length === 0) {
-      return res.status(401).json({ message: 'User not found' });
+      return res.status(401).json({ message: 'Utilisateur introuvable.' });
     }
 
     const user = userRows[0];
     const isMatch = await bcrypt.compare(password, user.password);
+
     if (!isMatch) {
-      return res.status(401).json({ message: 'Invalid credentials' });
+      return res.status(401).json({ message: 'Identifiants invalides.' });
     }
 
     const token = jwt.sign(
@@ -27,7 +29,7 @@ exports.loginUser = async (req, res) => {
       { expiresIn: '1d' }
     );
 
-    res.status(200).json({
+    return res.status(200).json({
       message: 'Connexion réussie',
       token,
       user: {
@@ -38,20 +40,25 @@ exports.loginUser = async (req, res) => {
       },
     });
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: 'Erreur serveur' });
+    console.error('Login error:', err);
+    return res.status(500).json({ message: 'Erreur serveur' });
   }
 };
 
+// REGISTER
 exports.registerUser = async (req, res) => {
-  const { login, email, password, role } = req.body;
+  const { login, email, password, role, firstname, lastname } = req.body;
 
-  if (!login || !email || !password || !role) {
+  if (!login || !email || !password || !role || !firstname || !lastname) {
     return res.status(400).json({ message: 'Tous les champs sont requis.' });
   }
 
+  const allowedRoles = ['client', 'artisan'];
+  if (!allowedRoles.includes(role.toLowerCase())) {
+    return res.status(403).json({ message: 'Rôle non autorisé.' });
+  }
+
   try {
-    // Check if login or email already exists
     const [existingUser] = await db.query(
       'SELECT * FROM users WHERE login = ? OR email = ?',
       [login, email]
@@ -61,37 +68,51 @@ exports.registerUser = async (req, res) => {
       return res.status(409).json({ message: 'Email ou login déjà utilisé.' });
     }
 
-    // Hash password
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Insert user
     const [result] = await db.query(
       `INSERT INTO users (login, password, email, role, created_at) 
        VALUES (?, ?, ?, ?, NOW())`,
-      [login, hashedPassword, email, role]
+      [login, hashedPassword, email, role.toLowerCase()]
     );
 
     const newUser = {
       id: result.insertId,
       login,
       email,
-      role,
+      role: role.toLowerCase(),
     };
 
-    // Optional: generate token
+    if (newUser.role === 'client') {
+      await db.query(
+        `INSERT INTO clients (nom, prenom, bankInfo, numeroTelephone, user_id)
+         VALUES (?, ?, ?, ?, ?)`,
+        [lastname, firstname, '', '', newUser.id]
+      );
+    } else if (newUser.role === 'artisan') {
+      await db.query(
+        `INSERT INTO artisans (nom, prenom, bio, bankInfo, numeroTelephone, user_id)
+         VALUES (?, ?, ?, ?, ?, ?)`,
+        [lastname, firstname, '', '', '', newUser.id]
+      );
+    }
+
     const token = jwt.sign(
       { id: newUser.id, role: newUser.role },
       process.env.JWT_SECRET,
       { expiresIn: '1d' }
     );
 
-    res.status(201).json({
+    return res.status(201).json({
       message: 'Inscription réussie.',
       token,
       user: newUser,
+      firstname,
+      lastname,
+      email,
     });
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: 'Erreur serveur' });
+    console.error('Register error:', err);
+    return res.status(500).json({ message: 'Erreur serveur' });
   }
 };
