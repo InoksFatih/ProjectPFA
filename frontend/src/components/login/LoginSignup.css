@@ -1,0 +1,123 @@
+/* === Base Container === */
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+.auth-container {
+  height: 100vh;
+  width: 100vw;
+  background: #F8EEDC;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  font-family: 'Poppins', sans-serif;
+  overflow-y: auto;
+  text-align: left;
+  padding-top: 20px; /* Add spacing from top */
+}
+
+/* Stretch row */
+.auth-row {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 40px;
+  margin: 0;
+  align-items: flex-start; /* align to top to match heading alignment */
+  justify-content: center;
+  gap: 100px;
+}
+.auth-section {
+  flex: 1 1 500px;
+  max-width: 600px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+/* === Headings === */
+.auth-section h2 {
+  font-size: 56px;
+  color: #4A2C1A;
+  margin-bottom: 40px;
+}
+
+/* === Form Labels === */
+.auth-section form label {
+  font-size: 18px;
+  color: #4A2C1A;
+  margin-bottom: 5px;
+}
+
+/* === Inputs === */
+.auth-section form .form-control {
+  height: 50px;
+  background: #F8EEDC;
+  border: 1px solid #4A2C1A;
+  color: #4A2C1A;
+  font-size: 18px;
+  border-radius: 0;
+  margin-bottom: 20px;
+}
+
+/* === Submit Buttons === */
+.auth-button {
+  width: 100%;
+  height: 50px;
+  background: #4A2C1A;
+  color: #FFFFFF;
+  font-size: 18px;
+  border: none;
+  margin-top: 10px;
+}
+
+/* === Forgot Password === */
+.forgot-password {
+  margin-top: 18px;
+  text-align: right;
+  font-size: 18px;
+  color: #4A2C1A;
+}
+
+
+
+.social-login p {
+  font-size: 20px;
+  text-align: center;
+  color: #4A2C1A;
+  margin: 20px 0;
+}
+
+.social-btn {
+  width: 100%;
+  height: 50px;
+  background: #F8EEDC;
+  border: 1px solid #4A2C1A;
+  font-size: 18px;
+  color: #4A2C1A;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.social-btn img {
+  width: 24px;
+  height: 24px;
+  margin-right: 12px;
+}
+
+/* === Autofill Fix === */
+input:-webkit-autofill {
+  background-color: #f3e5c3 !important;
+  -webkit-box-shadow: 0 0 0 1000px #f3e5c3 inset !important;
+  color: #4A2C1A !important;
+}
+
+input:-webkit-autofill::first-line {
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+  color: #4A2C1A;
+}
