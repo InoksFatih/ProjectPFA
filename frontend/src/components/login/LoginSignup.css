@@ -121,3 +121,14 @@ input:-webkit-autofill::first-line {
   font-size: 18px;
   color: #4A2C1A;
 }
+
+
+.toast-success-custom {
+  background: #0f0f0f;      
+  color: #00ff88;           
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 1rem 1.5rem;
+  border-left: 5px solid #00ff88;
+  border-radius: 8px;
+}
