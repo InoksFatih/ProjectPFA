@@ -1,0 +1,144 @@
+.NavbarItems {
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30px;
+  box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.25);
+  width: 95%;
+  height: 80px;
+  border-radius: 13px;
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  translate: -50%;
+  z-index: 9999;
+}
+
+.logo {
+  width: 160px;
+  cursor: pointer;
+}
+
+.Nav-menu {
+  display: grid;
+  grid-template-columns: repeat(7, auto);
+  grid-gap: 5px;
+  align-items: center;
+  list-style: none;
+}
+.nav-links {
+  color: #4d5d43;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.6rem 1rem;
+  white-space: nowrap;
+}
+.nav-links i {
+  padding-right: 10px;
+}
+.nav-links:hover {
+  background-color: #caae88;
+  color: white;
+  border-radius: 6px;
+  transition: all 0.2s ease-in-out;
+}
+.nav-links-mobile {
+  display: none;
+}
+.menu-icone {
+  display: none;
+}
+
+.botun {
+  padding: 0.5rem 1rem;
+  background-color: #4d5d43;
+  color: white;
+  white-space: nowrap;
+  border-radius: 0.3rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+}
+a{
+  color: black; 
+  text-decoration: none;
+}
+.botun:hover {
+  background-color: #caae88;
+  color: #fff;
+}
+
+@media screen and (max-width: 850px) {
+  .NavbarItems {
+    z-index: 99;
+  }
+
+  .Nav-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    background-color: #fff;
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top: 0;
+    left: -100%;
+    opacity: 0;
+    align-items: stretch;
+    padding: 70px 0 30px 0;
+    margin: 0;
+    transition: 0.3s ease-in-out;
+    border-radius: 13px;
+   
+  }
+
+  .Nav-menu.active {
+    left: 0;
+    opacity: 1;
+    z-index: -1;
+    transition: 0.3s ease-in-out;
+  }
+
+  .nav-links {
+    display: block;
+    width: 100%;
+    font-size: 1.2rem;
+    padding: 1rem 0;
+    padding-left: 60px;
+  }
+  .nav-links:hover {
+    background-color: #caae88;
+    transition: none;
+  }
+  .botun {
+    display: none;
+  }
+  .nav-links-mobile {
+    display: block;
+    text-emphasis: center;
+    padding: 1.5rem;
+    margin: auto;
+    border-radius: 6px;
+    width: 80%;
+    background-color: #4d5d43;
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+  }
+  .nav-links-mobile:hover {
+    background-color: #caae88;
+  }
+  .menu-icone {
+    display: block;
+    cursor: pointer;
+  }
+  .menu-icone i {
+    font-size: 1.2rem;
+  }
+}

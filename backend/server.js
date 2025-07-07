@@ -4,9 +4,11 @@ require('dotenv').config();
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const path = require('path');
+
 const pool = require('./config/db');
 const authRoutes = require('./routes/authRoutes');
 const artisanRoutes = require('./routes/artisanRoutes');
+const uploadRoutes = require('./routes/uploadRoutes');
 
 
 const PORT = process.env.PORT || 5000;
