@@ -24,11 +24,13 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
+  padding: 0;
   min-width: 320px;
   min-height: 100vh;
+  background-color: #fdf1db;
+  overflow-x: hidden;
 }
+
 
 h1 {
   font-size: 3.2em;
@@ -65,4 +67,25 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: #fdf1db; /* match your design */
+  
+}
+
+#root {
+  height: 100%;
+}
+
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
 }

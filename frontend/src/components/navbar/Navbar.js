@@ -12,7 +12,6 @@ const Navbar = () => {
   const {user} = useSelector(selectUser);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  // const name = useSelector(selectName);
 
   const logout = async () => {
     await logoutUser();
