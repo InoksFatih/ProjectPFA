@@ -1,0 +1,144 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap');
+
+.africart-header {
+  width: 100%;
+  height: 80px;
+  background: #F8EEDC;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+.header-inner {
+  width: 100%;
+  max-width: 1650px;
+  padding: 0 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  font-size: 24px;
+  font-weight: 700;
+  color: #4A2C1A;
+  cursor: pointer;
+}
+
+.nav-links {
+  display: flex;
+  gap: 30px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #000000;
+  cursor: pointer;
+}
+
+.icon {
+  width: 18px;
+  height: 18px;
+  color: #4A2C1A;
+}
+
+.auth-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.signin {
+  font-size: 16px;
+  font-weight: 500;
+  color: #4A2C1A;
+  cursor: pointer;
+  padding: 8px 12px;
+}
+
+.signup {
+  background: #4A2C1A;
+  color: #F8EEDC;
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.signup:hover {
+  background-color: #3c2317;
+}
+
+.profile-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+  border: 2px solid #4A2C1A;
+}
+
+.profile-menu {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+
+.dropdown-menu {
+  position: absolute;
+  top: 48px;
+  right: 0;
+  background-color: #F8EEDC; 
+  border: 1px solid #D9D9D9;  
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+  overflow: hidden;
+  display: block;
+  z-index: 1000;
+  min-width: 180px;
+}
+
+.dropdown-menu div {
+  padding: 12px 16px;
+  font-size: 15px;
+  color: #4A2C1A; /* Dark Brown text */
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.dropdown-menu div:hover {
+  background-color: #E3D5C1; /* Sand Beige hover */
+}
+/* Add max-width to prevent overflow */
+.profile-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  max-width: 200px;
+  overflow: hidden;
+}
+
+/* Optional: trim name if too long */
+.profile-name {
+  font-size: 16px;
+  font-weight: 500;
+  color: #4A2C1A;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+

@@ -5,7 +5,7 @@ import './LoginSignup.css';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Footer from '../footer/footer';
+import { useNavigate } from 'react-router-dom';
 
 const API_URL = 'http://localhost:5000/api/auth'; 
 
@@ -18,6 +18,8 @@ interface LoginData {
 }
 
 const LoginSignup: React.FC = () => {
+  const navigate = useNavigate();
+
   const [loginData, setLoginData] = useState<LoginData>({ login:'', password: '' });
 
   
@@ -36,17 +38,18 @@ const LoginSignup: React.FC = () => {
     });
 
     const { token, user } = res.data;
-
-    // 🔐 Store token (for later authenticated requests)
     localStorage.setItem('token', token);
+    localStorage.setItem('user', JSON.stringify(user));
 
-    // 🎉 Success feedback
     toast.success(`Bienvenue ${user.login} 🎉`, {
       className: 'toast-success-custom',
-      autoClose: 3000,
+      autoClose: 2000,
     });
 
-    console.log('Login success:', user);
+    setTimeout(() => {
+      navigate('/');
+      window.location.reload(); // 🧼 ensures header/menu updates
+    }, 2000); // delay to show the toast
 
   } catch (err: any) {
     console.error('Login error:', err);
@@ -58,7 +61,7 @@ const LoginSignup: React.FC = () => {
 
   return (
       <>
-    
+
     <Container fluid className="auth-container">
       <Row className="auth-row">
       
@@ -75,12 +78,11 @@ const LoginSignup: React.FC = () => {
             </Form.Group>
             <Button type="submit" className="auth-button">Se connecter</Button>
           </Form>
-          <a href='' className="forgot-password">Mot de passe oublié ?</a>
-          <a href='' className="forgot-password">Pas de compte ? Inscris-toi.</a>
+          <a href='/forgot-pass' className="forgot-password">Mot de passe oublié ?</a>
+          <a href='/register' className="forgot-password">Pas de compte ? Inscris-toi.</a>
         </Col>
       </Row>
     </Container>
-    <Footer/>
     <ToastContainer position="top-right" autoClose={3000} />
   </>
   );

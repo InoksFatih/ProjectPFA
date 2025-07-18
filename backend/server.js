@@ -9,6 +9,7 @@ const pool = require('./config/db');
 const authRoutes = require('./routes/authRoutes');
 const artisanRoutes = require('./routes/artisanRoutes');
 const uploadRoutes = require('./routes/uploadRoutes');
+const clientRoutes = require('./routes/clientRoutes');
 
 
 const PORT = process.env.PORT || 5000;
@@ -25,6 +26,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use('/api/auth', authRoutes);
 app.use('/api/artisan', artisanRoutes);
+app.use('/api/clients', clientRoutes);
 
 // Test route
 app.get('/', async (req, res) => {

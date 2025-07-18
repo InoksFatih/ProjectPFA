@@ -6,20 +6,19 @@ html, body, #root {
 }
 .auth-container {
   width: 100%;
-  max-width: 100vw;
   background: #F8EEDC;
   display: flex;
   justify-content: center;
-  align-items: stretch;
   font-family: 'Poppins', sans-serif;
   text-align: left;
-  padding-top: 20px;
+  padding: 60px 20px;
   box-sizing: border-box;
 
-  /* ❌ REMOVE these two lines */
-  /* height: 100vh; */
-  /* overflow-y: auto; */
+  /* 👇 THESE LINES ARE CRITICAL */
+  height: auto !important;
+  overflow: visible !important;
 }
+
 
 /* Stretch row */
 .auth-row {

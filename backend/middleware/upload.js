@@ -1,17 +1,21 @@
-const multer = require('multer');
 const path = require('path');
+const multer = require('multer');
 
-// Configure disk storage
-const storage = multer.diskStorage({
+const memoryStorage = multer.memoryStorage();
+const memoryUpload = multer({ storage: memoryStorage });
+
+const diskStorage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, 'uploads/'); // Make sure this folder exists
+    cb(null, 'uploads/');
   },
   filename: function (req, file, cb) {
     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
     cb(null, uniqueSuffix + path.extname(file.originalname));
   }
 });
+const diskUpload = multer({ storage: diskStorage });
 
-const upload = multer({ storage });
-
-module.exports = upload;
+module.exports = {
+  memoryUpload,
+  diskUpload
+};

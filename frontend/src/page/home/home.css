@@ -1,0 +1,188 @@
+.home {
+  font-family: 'Poppins', sans-serif;
+}
+
+/* === Hero Section === */
+.hero {
+  background-color: #F8EEDC;
+  padding: 100px 0;
+}
+.hero-title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: #4A2C1A;
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+.hero-subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  color: #4A2C1A;
+}
+.hero-button {
+  background-color: #4A2C1A;
+  color: #F8EEDC;
+  border: none;
+  font-weight: 600;
+  padding: 12px 30px;
+  font-size: 1rem;
+  border-radius: 4px;
+  transition: 0.3s ease;
+}
+.hero-button:hover {
+  background-color: #3c2317;
+}
+.hero-image {
+  height: 350px;
+  background: url('/images/hero.jpg') center/cover no-repeat;
+  border-radius: 16px;
+}
+
+/* === About Section === */
+.about {
+  padding: 100px 0;
+  background-color: #ffffff;
+  color: #4A2C1A;
+  font-family: 'Poppins', sans-serif;
+}
+
+.about-title {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 36px;
+  margin-bottom: 30px;
+}
+
+.about-text {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  max-width: 520px;
+  color: #4A2C1A;
+}
+
+.about-img {
+  width: 100%;
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+}
+
+/* === Categories Section === */
+.categories {
+  padding: 80px 0;
+  background-color: #E3D5C1;
+}
+.categories h2 {
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+  text-align: center;
+  font-weight: 700;
+  color: #4A2C1A;
+}
+.category-card {
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  border: none;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.category-card:hover {
+  transform: scale(1.05);
+}
+.category-card img {
+  height: 200px;
+  object-fit: cover;
+  border-bottom: 1px solid #ccc;
+}
+.category-card .card-title {
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #4A2C1A;
+}
+
+/* === Featured Products === */
+.featured {
+  padding: 80px 0;
+  background-color: #ffffff;
+}
+.featured h2 {
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+  text-align: center;
+  color: #4A2C1A;
+}
+.product-card {
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+.product-card:hover {
+  transform: scale(1.03);
+}
+.product-card img {
+  height: 240px;
+  object-fit: cover;
+}
+.product-card .card-title {
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #4A2C1A;
+}
+
+/* === Testimonials Section === */
+.testimonials {
+  background: #F8EEDC;
+  padding: 80px 0;
+}
+.testimonials h2 {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 40px;
+  color: #4A2C1A;
+}
+.testimonial {
+  background: #fff;
+  padding: 30px;
+  border-left: 5px solid #4A2C1A;
+  box-shadow: 0px 4px 12px rgba(0,0,0,0.05);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+.testimonial span {
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
+  color: #4A2C1A;
+}
+
+/* === Call to Action === */
+.cta {
+  padding: 80px 0;
+  background-color: #E3D5C1;
+  text-align: center;
+}
+.cta h3 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #4A2C1A;
+}
+.cta p {
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+}
+.cta button {
+  background-color: #4A2C1A;
+  color: #F8EEDC;
+  padding: 12px 30px;
+  font-weight: 600;
+  border-radius: 4px;
+  transition: 0.3s ease;
+}
+.cta button:hover {
+  background-color: #3c2317;
+}

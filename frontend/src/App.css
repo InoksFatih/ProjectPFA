@@ -35,3 +35,15 @@
 .read-the-docs {
   color: #888;
 }
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+}
+html {
+  scroll-behavior: smooth;
+}

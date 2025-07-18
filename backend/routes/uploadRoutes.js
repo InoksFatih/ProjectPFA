@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const upload = require('../middleware/upload');
+const { diskUpload } = require('../middleware/upload'); // or memoryUpload if you want buffer
 
 
-router.post('/produit-image', upload.single('image'), (req, res) => {
+router.post('/produit-image', diskUpload.single('image'), (req, res) => {
   if (!req.file) {
     return res.status(400).json({ message: 'No file uploaded' });
   }

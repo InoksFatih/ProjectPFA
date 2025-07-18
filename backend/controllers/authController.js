@@ -1,26 +1,32 @@
-const db = require('../config/db');
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
 
-// LOGIN
+const jwt = require('jsonwebtoken');
+const UserModel = require('../models/userModel');
+const db = require('../config/db');
+
+
 exports.loginUser = async (req, res) => {
   const { login, password } = req.body;
 
   try {
-    const [userRows] = await db.query(
-      'SELECT * FROM users WHERE login = ? OR email = ?',
-      [login, login]
-    );
+    const user = await UserModel.findByLoginOrEmail(login);
+    if (!user) return res.status(401).json({ message: 'Utilisateur introuvable.' });
 
-    if (userRows.length === 0) {
-      return res.status(401).json({ message: 'Utilisateur introuvable.' });
-    }
+    const isMatch = await UserModel.comparePassword(password, user.password);
+    if (!isMatch) return res.status(401).json({ message: 'Identifiants invalides.' });
 
-    const user = userRows[0];
-    const isMatch = await bcrypt.compare(password, user.password);
-
-    if (!isMatch) {
-      return res.status(401).json({ message: 'Identifiants invalides.' });
+    let firstName = '';
+    if (user.role === 'client') {
+      const [clientRows] = await db.query(
+        'SELECT prenom FROM clients WHERE user_id = ?',
+        [user.id]
+      );
+      firstName = clientRows[0]?.prenom || '';
+    } else if (user.role === 'artisan') {
+      const [artisanRows] = await db.query(
+        'SELECT prenom FROM artisans WHERE user_id = ?',
+        [user.id]
+      );
+      firstName = artisanRows[0]?.prenom || '';
     }
 
     const token = jwt.sign(
@@ -37,7 +43,9 @@ exports.loginUser = async (req, res) => {
         login: user.login,
         email: user.email,
         role: user.role,
-      },
+        firstName, // 
+        profilePhoto: user.profile_photo || '' 
+      }
     });
   } catch (err) {
     console.error('Login error:', err);
@@ -45,6 +53,7 @@ exports.loginUser = async (req, res) => {
   }
 };
 
+// REGISTER
 exports.registerUser = async (req, res) => {
   const { login, email, password, role, firstname, lastname } = req.body;
 
@@ -58,46 +67,29 @@ exports.registerUser = async (req, res) => {
   }
 
   try {
-    const [existingUser] = await db.query(
-      'SELECT * FROM users WHERE login = ? OR email = ?',
-      [login, email]
-    );
-
-    if (existingUser.length > 0) {
+    const existing = await UserModel.findByLoginOrEmail(login);
+    if (existing) {
       return res.status(409).json({ message: 'Email ou login déjà utilisé.' });
     }
 
-    const hashedPassword = await bcrypt.hash(password, 10);
+    const userId = await UserModel.create({ login, email, password, role });
 
-    const [result] = await db.query(
-      `INSERT INTO users (login, password, email, role, created_at) 
-       VALUES (?, ?, ?, ?, NOW())`,
-      [login, hashedPassword, email, role.toLowerCase()]
-    );
-
-    const newUser = {
-      id: result.insertId,
-      login,
-      email,
-      role: role.toLowerCase(),
-    };
-
-    if (newUser.role === 'client') {
+    if (role.toLowerCase() === 'client') {
       await db.query(
         `INSERT INTO clients (nom, prenom, bankInfo, numeroTelephone, user_id)
-         VALUES (?, ?, ?, ?, ?)`,
-        [lastname, firstname, '', '', newUser.id]
+         VALUES (?, ?, '', '', ?)`,
+        [lastname, firstname, userId]
       );
-    } else if (newUser.role === 'artisan') {
+    } else if (role.toLowerCase() === 'artisan') {
       await db.query(
         `INSERT INTO artisans (nom, prenom, bio, bankInfo, numeroTelephone, user_id)
-         VALUES (?, ?, ?, ?, ?, ?)`,
-        [lastname, firstname, '', '', '', newUser.id]
+         VALUES (?, ?, '', '', '', ?)`,
+        [lastname, firstname, userId]
       );
     }
 
     const token = jwt.sign(
-      { id: newUser.id, role: newUser.role },
+      { id: userId, role: role.toLowerCase() },
       process.env.JWT_SECRET,
       { expiresIn: '1d' }
     );
@@ -105,7 +97,12 @@ exports.registerUser = async (req, res) => {
     return res.status(201).json({
       message: 'Inscription réussie.',
       token,
-      user: newUser,
+      user: {
+        id: userId,
+        login,
+        email,
+        role: role.toLowerCase(),
+      },
       firstname,
       lastname,
       email,
