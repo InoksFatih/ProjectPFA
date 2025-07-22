@@ -27,6 +27,7 @@ function App() {
           <Route path="/login" element={<LoginSignup />} />
           <Route path="/marketplace" element={<Marketplace />} />
           <Route path="/produit/:id" element={<ProductDetails />} />
+           <Route path="/contact" element={<Contact />} />
 
 
           {/* Add other routes as needed */}
