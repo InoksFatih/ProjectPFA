@@ -87,7 +87,7 @@ const Contact = () => {
           Nous sommes là pour vous aider ! Remplissez le formulaire ou contactez-nous par e-mail ou par téléphone. 
           Notre service client est à votre disposition pour vous offrir la meilleure expérience possible.
         </p>
-        <p>📧 Africart12@outlook.com<br />💬 chat with us</p>
+        
       </div>
       <form className="contact-form" onSubmit={handleSubmit}>
         <div className="row">
