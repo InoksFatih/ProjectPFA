@@ -12,6 +12,7 @@ import Home from './page/home/home';
 import Marketplace from './page/marketplace/marketplace';
 import ProductDetails from './page/productDetails/ProductDetails';
 import Panier from './page/panier/Panier';
+import Contact from './page/contact'; // 👈 import du fichier contact.tsx
 
 function App() {
   return (

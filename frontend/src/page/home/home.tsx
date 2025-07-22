@@ -176,7 +176,7 @@ const testimonials = [
             {testimonials.map((t, i) => (
               <SwiperSlide key={i}>
                 <div className="testimonial-card">
-                  <p className="testimonial-text">« {t.text} »</p>
+                  <p className="testimonial-text">« {t.text}»</p>
                   <img src={t.img} alt={t.name} className="testimonial-img" />
                   <h5 className="testimonial-name">{t.name}</h5>
                   <p className="testimonial-role">{t.role}</p>
