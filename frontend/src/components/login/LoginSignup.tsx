@@ -41,6 +41,9 @@ const LoginSignup: React.FC = () => {
     localStorage.setItem('token', token);
     localStorage.setItem('user', JSON.stringify(user));
 
+    // ✅ Log the token for dev/testing
+    console.log('JWT Token:', token);
+
     toast.success(`Bienvenue ${user.login} 🎉`, {
       className: 'toast-success-custom',
       autoClose: 2000,
@@ -48,8 +51,8 @@ const LoginSignup: React.FC = () => {
 
     setTimeout(() => {
       navigate('/');
-      window.location.reload(); // 🧼 ensures header/menu updates
-    }, 2000); // delay to show the toast
+      window.location.reload();
+    }, 2000);
 
   } catch (err: any) {
     console.error('Login error:', err);
@@ -58,6 +61,7 @@ const LoginSignup: React.FC = () => {
     });
   }
 };
+
 
   return (
       <>

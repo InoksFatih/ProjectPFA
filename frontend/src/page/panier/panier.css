@@ -1,0 +1,186 @@
+/* Base container */
+.panier-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  padding: 2rem;
+  background-color: #F8EEDC;
+  font-family: 'Inter', sans-serif;
+  min-height: 60vh;
+}
+
+/* Cart items list */
+.panier-items {
+  flex: 2;
+  min-width: 300px;
+}
+
+/* Single cart item */
+.panier-item {
+  background: #fff;
+  border: 1px solid #E3D5C1;
+  border-radius: 10px;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.panier-item img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.item-info {
+  flex: 1;
+}
+
+.item-info h4 {
+  margin: 0 0 5px 0;
+  color: #4A2C1A;
+  font-size: 1.1rem;
+}
+
+.item-info p {
+  color: #4B2E1E;
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Quantity controls */
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.quantity-controls button {
+  background-color: #E3D5C1;
+  color: #4A2C1A;
+  border: none;
+  padding: 5px 10px;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.quantity-controls button:hover {
+  background-color: #d1c1aa;
+}
+
+.quantity-controls span {
+  min-width: 24px;
+  text-align: center;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+/* Delete button */
+.delete-btn {
+  background: none;
+  border: none;
+  color: #B00020;
+  font-size: 1.2rem;
+  margin-left: auto;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.delete-btn:hover {
+  transform: scale(1.2);
+}
+
+/* Order Summary */
+.panier-summary {
+  flex: 1;
+  min-width: 300px;
+  background: #fff;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  height: fit-content;
+  position: sticky;
+  top: 100px;
+}
+
+.panier-summary h3 {
+  color: #4A2C1A;
+  margin-bottom: 1rem;
+}
+
+.panier-summary p {
+  color: #222;
+  font-size: 0.95rem;
+  margin: 0.5rem 0;
+}
+
+.payment-methods label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #4A2C1A;
+  font-size: 0.95rem;
+}
+
+/* Checkout Button */
+.checkout-btn {
+  background-color: #4A2C1A;
+  color: white;
+  border: none;
+  padding: 0.75rem;
+  margin-top: 1.5rem;
+  width: 100%;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: background 0.2s ease;
+}
+
+.checkout-btn:hover {
+  background-color: #3b2317;
+}
+
+/* Empty cart message */
+.empty-message {
+  background-color: #fff;
+  padding: 2rem;
+  text-align: center;
+  border-radius: 10px;
+  color: #4A2C1A;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  font-size: 1.1rem;
+}
+
+/* Responsive layout */
+@media (max-width: 768px) {
+  .panier-container {
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  .panier-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .delete-btn {
+    align-self: flex-end;
+    margin-top: 1rem;
+  }
+
+  .quantity-controls {
+    margin-top: 0.5rem;
+  }
+
+  .panier-summary {
+    position: static;
+    margin-top: 2rem;
+  }
+}

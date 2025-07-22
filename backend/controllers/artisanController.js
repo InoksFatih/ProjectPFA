@@ -19,10 +19,11 @@ exports.getArtisanByUserId = async (req, res) => {
 // ✅ Update artisan profile
 exports.updateArtisan = async (req, res) => {
   const userId = req.params.userId;
-  const { nom, prenom, bio, bankInfo, numeroTelephone } = req.body;
+  const { nom, prenom, bio, bankInfo, numeroTelephone, pays, type_artisanat } = req.body;
+
 
   try {
-    await ArtisanModel.updateProfile(userId, { nom, prenom, bio, bankInfo, numeroTelephone });
+    await ArtisanModel.updateProfile(userId, { nom, prenom, bio, bankInfo, numeroTelephone, pays, type_artisanat });
     res.status(200).json({ message: 'Profil mis à jour avec succès' });
   } catch (err) {
     console.error(err);
@@ -39,6 +40,19 @@ exports.getArtisanProducts = async (req, res) => {
     res.status(200).json(products);
   } catch (error) {
     console.error('Erreur produits artisan :', error);
+    res.status(500).json({ message: 'Erreur serveur' });
+  }
+};
+
+ exports.getAllProductsForMarketplace = async (req, res) => {
+    console.log("🔥 getAllProductsForMarketplace triggered");
+
+  try {
+    const produits = await ProduitModel.getAllWithArtisan();
+    console.log("📦 FINAL PRODUCTS:", JSON.stringify(produits, null, 2));
+    res.status(200).json(produits);
+  } catch (err) {
+    console.error('❌ Erreur getAllProductsForMarketplace:', err);
     res.status(500).json({ message: 'Erreur serveur' });
   }
 };
@@ -127,22 +141,32 @@ exports.getProductImages = async (req, res) => {
 };
 
 // ✅ Add product image
-exports.addProductImage = async (req, res) => {
+exports.addProductImagesFromUpload = async (req, res) => {
   const productId = req.params.productId;
-  const { image_url } = req.body;
 
-  if (!image_url) {
-    return res.status(400).json({ message: 'Image URL requise' });
+  if (!req.files || req.files.length === 0) {
+    return res.status(400).json({ message: 'Aucune image reçue.' });
   }
 
   try {
-    const imageId = await ProduitModel.addImage(productId, image_url);
-    res.status(201).json({ message: 'Image ajoutée', imageId });
+    const imageUrls = [];
+
+    for (const file of req.files) {
+      const imagePath = `/uploads/${file.filename}`;
+      await ProduitModel.addImage(productId, imagePath);
+      imageUrls.push(imagePath);
+    }
+
+    res.status(201).json({
+      message: 'Images ajoutées avec succès',
+      images: imageUrls,
+    });
   } catch (err) {
-    console.error('Erreur ajout image :', err);
-    res.status(500).json({ message: 'Erreur serveur' });
+    console.error('Erreur upload images :', err);
+    res.status(500).json({ message: 'Erreur lors de l’ajout des images.' });
   }
 };
+
 
 // ✅ Delete product image
 exports.deleteProductImage = async (req, res) => {
@@ -159,4 +183,25 @@ exports.deleteProductImage = async (req, res) => {
     console.error('Erreur suppression image :', err);
     res.status(500).json({ message: 'Erreur serveur' });
   }
+};
+exports.getSingleProductWithImages = async (req, res) => {
+  const { id } = req.params;
+  console.log("📥 API HIT: GET /produit/" + id);
+
+  try {
+    const product = await ProduitModel.getSingleWithImages(id);
+
+    if (!product) {
+      console.warn("⚠️ No product found for ID:", id);
+      return res.status(404).json({ message: 'Produit non trouvé.' });
+    }
+
+    console.log("✅ Final product response:", product);
+    res.status(200).json(product);
+  } catch (err) {
+    console.error('❌ Erreur getSingleProductWithImages:', err);
+    res.status(500).json({ message: 'Erreur serveur' });
+  }
+
+
 };

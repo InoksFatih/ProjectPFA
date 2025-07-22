@@ -4,12 +4,9 @@ import {
   FaMapMarkerAlt,
   FaPhone,
   FaEnvelope,
-  FaSkype,
   FaFacebookF,
   FaTwitter,
-  FaGooglePlusG,
   FaInstagram,
-  FaPinterest,
 } from "react-icons/fa";
 
 const Footer = () => {
@@ -25,16 +22,15 @@ const Footer = () => {
               <p>
                 Nous sommes une communauté qui célèbre l’artisanat africain authentique. Découvrez, soutenez et partagez des créations uniques.
               </p>
-              <p><a href="#">Notre équipe</a></p>
+             
             </div>
 
             {/* Contact */}
             <div className="col-md-4 offset-md-1 footer-contact">
               <h5>Contact</h5>
-              <p><FaMapMarkerAlt /> Maroc, Casablanca</p>
-              <p><FaPhone /> +212 5 28 28 41 56</p>
-              <p><FaEnvelope /> <a href="mailto:contact@africart.com">contact@africart.com</a></p>
-              <p><FaSkype /> you_online</p>
+              <p><FaMapMarkerAlt /> Maroc, Rabat</p>
+              <p><FaPhone /> +212 5 28-284156</p>
+              <p><FaEnvelope /> <a href="mailto:contact@africart.com">Africart12@outlook.com</a></p>
             </div>
 
             {/* Links */}
@@ -43,9 +39,9 @@ const Footer = () => {
                 <div className="col">
                   <h5>Liens utiles</h5>
                   <p><a href="#">Accueil</a></p>
-                  <p><a href="#">À propos</a></p>
-                  <p><a href="#">Contact</a></p>
                   <p><a href="#">Marketplace</a></p>
+                  <p><a href="#">Ateliers</a></p>
+                  <p><a href="#">Contact</a></p>
                 </div>
                 <div className="col">
                   <h5>Légal</h5>
@@ -67,9 +63,7 @@ const Footer = () => {
           <div className="socials">
             <a href="#"><FaFacebookF /></a>
             <a href="#"><FaTwitter /></a>
-            <a href="#"><FaGooglePlusG /></a>
             <a href="#"><FaInstagram /></a>
-            <a href="#"><FaPinterest /></a>
           </div>
         </div>
       </div>

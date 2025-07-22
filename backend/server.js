@@ -10,6 +10,10 @@ const authRoutes = require('./routes/authRoutes');
 const artisanRoutes = require('./routes/artisanRoutes');
 const uploadRoutes = require('./routes/uploadRoutes');
 const clientRoutes = require('./routes/clientRoutes');
+const reviewRoutes = require('./routes/reviewRoutes');
+const panierRoutes = require('./routes/panierRoutes');
+const stripeRoutes = require('./routes/stripeRoutes');
+const paypalRoutes = require('./routes/paypalRoutes');
 
 
 const PORT = process.env.PORT || 5000;
@@ -27,6 +31,11 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use('/api/auth', authRoutes);
 app.use('/api/artisan', artisanRoutes);
 app.use('/api/clients', clientRoutes);
+app.use('/api/upload', uploadRoutes); 
+app.use('/api/reviews', reviewRoutes);
+app.use('/api/panier', panierRoutes);
+app.use('/api/stripe', stripeRoutes);
+app.use('/api/paypal', paypalRoutes);
 
 // Test route
 app.get('/', async (req, res) => {

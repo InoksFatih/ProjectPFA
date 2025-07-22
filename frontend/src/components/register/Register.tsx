@@ -17,15 +17,32 @@ interface SignupData {
   lastname: string;
   email: string;
   password: string;
-  confirmPassword: string; 
+  confirmPassword: string;
+  phone: string;
+  pays?: string;
+  type_artisanat?: string;
 }
 
+
+const availableCountries = [
+  "Algérie", "Angola", "Bénin", "Botswana", "Burkina Faso", "Burundi", "Cameroun", "Cap-Vert", "Comores",
+  "Congo (Brazzaville)", "Congo (Kinshasa)", "Côte d'Ivoire", "Djibouti", "Égypte", "Érythrée", "Eswatini",
+  "Éthiopie", "Gabon", "Gambie", "Ghana", "Guinée", "Guinée-Bissau", "Guinée équatoriale", "Kenya", "Lesotho",
+  "Libéria", "Libye", "Madagascar", "Malawi", "Mali", "Maroc", "Maurice", "Mauritanie", "Mozambique",
+  "Namibie", "Niger", "Nigéria", "Ouganda", "Rwanda", "São Tomé-et-Príncipe", "Sénégal", "Seychelles",
+  "Sierra Leone", "Somalie", "Soudan", "Soudan du Sud", "Tanzanie", "Tchad", "Togo", "Tunisie", "Zambie", "Zimbabwe"
+];
+
+const availableTypes = [
+  "Poterie", "Tapis", "Bijoux", "Textile", "Sculpture sur bois", "Peinture", "Cuivre", "Vannerie",
+  "Cuir", "Art en métal", "Teinture", "Calligraphie", "Tissage", "Verre soufflé"
+];
 
 const Register: React.FC = () => {
     const navigate = useNavigate();
 
-  const [signupData, setSignupData] = useState<SignupData>({  login: '',
- role: 'Client', firstname: '',lastname:'', email: '' , password:'', confirmPassword:''});
+  const [signupData, setSignupData] = useState<SignupData>({  login: '', role: 'Client', firstname: '',lastname:'', email: '' , password:'', confirmPassword:'', phone:'',
+    pays:'',type_artisanat:''});
 
 
   const handleSignupChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
@@ -49,7 +66,10 @@ const handleSignup = async (e: FormEvent<HTMLFormElement>) => {
       password: signupData.password,
       role: signupData.role.toLowerCase(),
       firstname: signupData.firstname,
-      lastname: signupData.lastname
+      lastname: signupData.lastname,
+      phone: signupData.phone,
+      pays: signupData.role === 'Artisan' ? signupData.pays : null,
+      type_artisanat: signupData.role === 'Artisan' ? signupData.type_artisanat : null
     });
 
     const { token, user } = res.data;
@@ -71,6 +91,7 @@ const handleSignup = async (e: FormEvent<HTMLFormElement>) => {
     toast.error(err.response?.data?.message || 'Erreur lors de l’inscription ❌');
   }
 };
+
 
   return (
       <>
@@ -126,6 +147,53 @@ const handleSignup = async (e: FormEvent<HTMLFormElement>) => {
       </Form.Group>
     </Col>
   </Row>
+  <Form.Group>
+  <Form.Label>Numéro de téléphone</Form.Label>
+  <Form.Control
+    type="text"
+    name="phone"
+    value={signupData.phone}
+    onChange={handleSignupChange}
+    required
+  />
+</Form.Group>
+
+{signupData.role === 'Artisan' && (
+  <>
+    <Form.Group>
+      <Form.Label>Pays</Form.Label>
+      <Form.Control
+        as="select"
+        name="pays"
+        value={signupData.pays}
+        onChange={handleSignupChange}
+        required
+      >
+        <option value="">Sélectionner un pays</option>
+        {availableCountries.map((country, idx) => (
+          <option key={idx} value={country}>{country}</option>
+        ))}
+      </Form.Control>
+    </Form.Group>
+
+    <Form.Group>
+      <Form.Label>Type d’artisanat</Form.Label>
+      <Form.Control
+        as="select"
+        name="type_artisanat"
+        value={signupData.type_artisanat}
+        onChange={handleSignupChange}
+        required
+      >
+        <option value="">Sélectionner un type</option>
+        {availableTypes.map((type, idx) => (
+          <option key={idx} value={type}>{type}</option>
+        ))}
+      </Form.Control>
+    </Form.Group>
+  </>
+)}
+
 
   <Button type="submit" className="auth-button">S’inscrire</Button>
 </Form>

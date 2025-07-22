@@ -55,10 +55,20 @@ exports.loginUser = async (req, res) => {
 
 // REGISTER
 exports.registerUser = async (req, res) => {
-  const { login, email, password, role, firstname, lastname } = req.body;
+  const {
+    login,
+    email,
+    password,
+    role,
+    firstname,
+    lastname,
+    phone,
+    pays,
+    type_artisanat
+  } = req.body;
 
-  if (!login || !email || !password || !role || !firstname || !lastname) {
-    return res.status(400).json({ message: 'Tous les champs sont requis.' });
+  if (!login || !email || !password || !role || !firstname || !lastname || !phone) {
+    return res.status(400).json({ message: 'Tous les champs requis.' });
   }
 
   const allowedRoles = ['client', 'artisan'];
@@ -77,14 +87,18 @@ exports.registerUser = async (req, res) => {
     if (role.toLowerCase() === 'client') {
       await db.query(
         `INSERT INTO clients (nom, prenom, bankInfo, numeroTelephone, user_id)
-         VALUES (?, ?, '', '', ?)`,
-        [lastname, firstname, userId]
+         VALUES (?, ?, '', ?, ?)`,
+        [lastname, firstname, phone, userId]
       );
     } else if (role.toLowerCase() === 'artisan') {
+      if (!pays || !type_artisanat) {
+        return res.status(400).json({ message: 'Pays et type d’artisanat requis pour les artisans.' });
+      }
+
       await db.query(
-        `INSERT INTO artisans (nom, prenom, bio, bankInfo, numeroTelephone, user_id)
-         VALUES (?, ?, '', '', '', ?)`,
-        [lastname, firstname, userId]
+        `INSERT INTO artisans (nom, prenom, bio, bankInfo, numeroTelephone, pays, type_artisanat, user_id)
+         VALUES (?, ?, '', '', ?, ?, ?, ?)`,
+        [lastname, firstname, phone, pays, type_artisanat, userId]
       );
     }
 
@@ -102,10 +116,8 @@ exports.registerUser = async (req, res) => {
         login,
         email,
         role: role.toLowerCase(),
-      },
-      firstname,
-      lastname,
-      email,
+        firstName: firstname 
+      }
     });
   } catch (err) {
     console.error('Register error:', err);

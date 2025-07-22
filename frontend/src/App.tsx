@@ -7,9 +7,11 @@ import ScrollToTop from './utils/ScrollToTop';
 import Footer from './components/footer/footer';
 import Header from './components/header/Header';
 import Register from './components/register/Register';
-import LoginSignup from './components/login/LoginSignup'; // adjust the path
+import LoginSignup from './components/login/LoginSignup'; 
 import Home from './page/home/home';
-
+import Marketplace from './page/marketplace/marketplace';
+import ProductDetails from './page/productDetails/ProductDetails';
+import Panier from './page/panier/Panier';
 
 function App() {
   return (
@@ -19,9 +21,13 @@ function App() {
       <main className="main-content">
         <Routes>
           <Route path="/" element={<Home />} />
-
+          <Route path="/panier" element={<Panier />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<LoginSignup />} />
+          <Route path="/marketplace" element={<Marketplace />} />
+          <Route path="/produit/:id" element={<ProductDetails />} />
+
+
           {/* Add other routes as needed */}
         </Routes>
       </main>

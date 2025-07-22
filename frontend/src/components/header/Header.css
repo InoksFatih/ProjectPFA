@@ -1,17 +1,29 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap');
 
 .africart-header {
-  width: 100%;
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 95%;
   height: 80px;
-  background: #F8EEDC;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
-  font-family: 'Poppins', sans-serif;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  border-radius: 16px;
+  z-index: 9999;
   display: flex;
   align-items: center;
   justify-content: center;
-  position: sticky;
-  top: 0;
-  z-index: 999;
+  font-family: 'Poppins', sans-serif;
+  transition: all 0.3s ease-in-out;
+}
+.africart-header.scrolled {
+  background: rgba(255, 255, 255, 0.85);
+  height: 70px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  padding: 0 40px;
 }
 
 .header-inner {
@@ -142,3 +154,86 @@
   text-overflow: ellipsis;
 }
 
+/* Hamburger Icon */
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  cursor: pointer;
+}
+
+.hamburger .bar {
+  width: 25px;
+  height: 3px;
+  background-color: #4A2C1A;
+  border-radius: 2px;
+}
+
+/* Mobile Dropdown Menu */
+.mobile-menu {
+  position: absolute;
+  top: 80px;
+  left: 0;
+  width: 100%;
+  background-color: #F8EEDC;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 998;
+  padding: 16px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.mobile-nav-item {
+  font-size: 16px;
+  font-weight: 500;
+  color: #4A2C1A;
+  cursor: pointer;
+  padding: 8px 0;
+  border-bottom: 1px solid #E3D5C1;
+}
+
+.mobile-nav-item:last-child {
+  border-bottom: none;
+}
+.cart-icon {
+  margin-right: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 2px solid #4B2E1E; /* Coffee Brown border */
+  border-radius: 50%; /* Makes it circular */
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.cart-icon .icon {
+  color: #4B2E1E;
+  width: 22px;
+  height: 22px;
+}
+
+.cart-icon:hover {
+  background-color: #E3D5C1; /* Sand Beige on hover */
+  transform: scale(1.05);
+}
+.cart-count-badge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background-color: #4A2C1A; /* AfricArt Dark Brown */
+  color: #FFFFFF;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  line-height: 1;
+  box-shadow: 0 0 0 2px #F8EEDC; /* match header background */
+}
