@@ -3,7 +3,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 2rem;
-  padding: 2rem;
+  padding: 120px 40px 40px 40px; /* Top padding added to match header height */
   background-color: #F8EEDC;
   font-family: 'Inter', sans-serif;
   min-height: 60vh;

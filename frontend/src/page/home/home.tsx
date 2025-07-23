@@ -10,7 +10,12 @@ import cat1 from '../../assets/cat-1.jpg';
 import cat2 from '../../assets/cat-2.jpg';
 import cat3 from '../../assets/cat-3.jpg';
 import cat4 from '../../assets/cat-4.jpg';
-
+import vid1 from '../../assets/vid1.mp4';
+import vid2 from '../../assets/vid2.mp4';
+import vid3 from '../../assets/vid3.mp4';
+import thumb1 from '../../assets/vid1thumb.png';
+import thumb2 from '../../assets/vid2thumb.png';
+import thumb3 from '../../assets/vid3thumb.png';
 const Home: React.FC = () => {
   const navigate = useNavigate();
 const categories = [
@@ -19,30 +24,30 @@ const categories = [
   { title: 'Sculpture sur bois', img: cat3 },
   { title: 'Cuir', img: cat4 }
 ];
+const ateliers = [
+  {
+    title: 'Atelier Tissage',
+    img: thumb1,
+    video: vid1,
+    price: 49
+  },
+  {
+    title: 'Atelier Poterie',
+    img: thumb2,
+    video: vid2,
+    price: 59
+  },
+  {
+    title: 'Création de Bijoux',
+    img: thumb3,
+    video: vid3,
+    price: 39
+  }
+];
   const [showModal, setShowModal] = useState(false);
   const [selectedWorkshop, setSelectedWorkshop] = useState<any>(null);
 
-  const ateliers = [
-    {
-      title: 'Atelier Tissage',
-      img: '/images/atelier-1.jpg',
-      previewVideo: 'https://www.youtube.com/embed/2Vv-BfVoq4g',
-      price: 49
-    },
-    {
-      title: 'Atelier Poterie',
-      img: '/images/atelier-2.jpg',
-      previewVideo: 'https://www.youtube.com/embed/ysz5S6PUM-U',
-      price: 59
-    },
-    {
-      title: 'Création de Bijoux',
-      img: '/images/atelier-3.jpg',
-      previewVideo: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
-      price: 39
-    }
-  ];
-
+  
   const openModal = (workshop: any) => {
     setSelectedWorkshop(workshop);
     setShowModal(true);
@@ -176,14 +181,16 @@ const categories = [
         </Modal.Header>
         <Modal.Body>
           <div className="video-wrapper">
-            <iframe
-              width="100%"
-              height="360"
-              src={selectedWorkshop?.previewVideo}
-              title="Preview"
-              allowFullScreen
-              style={{ borderRadius: '12px' }}
-            />
+           <video
+  width="100%"
+  height="auto"
+  controls
+  style={{ borderRadius: '12px' }}
+>
+  <source src={selectedWorkshop?.video} type="video/mp4" />
+  Your browser does not support the video tag.
+</video>
+
           </div>
           <p className="mt-3">
             Découvrez une introduction gratuite. Pour débloquer l’atelier complet, procédez au paiement sécurisé.

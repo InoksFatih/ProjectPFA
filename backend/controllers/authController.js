@@ -95,10 +95,22 @@ exports.registerUser = async (req, res) => {
         return res.status(400).json({ message: 'Pays et type d’artisanat requis pour les artisans.' });
       }
 
-      await db.query(
+      // Insert into artisans table
+      const [artisanResult] = await db.query(
         `INSERT INTO artisans (nom, prenom, bio, bankInfo, numeroTelephone, pays, type_artisanat, user_id)
          VALUES (?, ?, '', '', ?, ?, ?, ?)`,
         [lastname, firstname, phone, pays, type_artisanat, userId]
+      );
+
+      const artisanId = artisanResult.insertId;
+
+      // Create linked boutique automatically
+      const boutiqueName = `${firstname} ${lastname}'s Boutique`;
+      const boutiqueDesc = `Bienvenue dans la boutique de ${firstname}`;
+      await db.query(
+        `INSERT INTO boutiques (nom, description, artisan_id)
+         VALUES (?, ?, ?)`,
+        [boutiqueName, boutiqueDesc, artisanId]
       );
     }
 
@@ -116,7 +128,7 @@ exports.registerUser = async (req, res) => {
         login,
         email,
         role: role.toLowerCase(),
-        firstName: firstname 
+        firstName: firstname
       }
     });
   } catch (err) {
@@ -124,3 +136,4 @@ exports.registerUser = async (req, res) => {
     return res.status(500).json({ message: 'Erreur serveur' });
   }
 };
+

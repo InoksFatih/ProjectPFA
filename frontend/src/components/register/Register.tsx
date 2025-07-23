@@ -25,13 +25,16 @@ interface SignupData {
 
 
 const availableCountries = [
-  "Algérie", "Angola", "Bénin", "Botswana", "Burkina Faso", "Burundi", "Cameroun", "Cap-Vert", "Comores",
-  "Congo (Brazzaville)", "Congo (Kinshasa)", "Côte d'Ivoire", "Djibouti", "Égypte", "Érythrée", "Eswatini",
-  "Éthiopie", "Gabon", "Gambie", "Ghana", "Guinée", "Guinée-Bissau", "Guinée équatoriale", "Kenya", "Lesotho",
-  "Libéria", "Libye", "Madagascar", "Malawi", "Mali", "Maroc", "Maurice", "Mauritanie", "Mozambique",
-  "Namibie", "Niger", "Nigéria", "Ouganda", "Rwanda", "São Tomé-et-Príncipe", "Sénégal", "Seychelles",
-  "Sierra Leone", "Somalie", "Soudan", "Soudan du Sud", "Tanzanie", "Tchad", "Togo", "Tunisie", "Zambie", "Zimbabwe"
+  "Afrique du Sud", "Algérie", "Angola", "Bénin", "Botswana", "Burkina Faso", "Burundi",
+  "Cameroun", "Cap-Vert", "Comores", "Congo (Brazzaville)", "Congo (Kinshasa)", "Côte d'Ivoire",
+  "Djibouti", "Égypte", "Érythrée", "Eswatini", "Éthiopie", "Gabon", "Gambie", "Ghana",
+  "Guinée", "Guinée-Bissau", "Guinée équatoriale", "Kenya", "Lesotho", "Libéria", "Libye",
+  "Madagascar", "Malawi", "Mali", "Maroc", "Maurice", "Mauritanie", "Mozambique", "Namibie",
+  "Niger", "Nigéria", "Ouganda", "République centrafricaine", "Rwanda", "Sao Tomé-et-Principe",
+  "Sénégal", "Seychelles", "Sierra Leone", "Somalie", "Soudan", "Soudan du Sud", "Tanzanie",
+  "Tchad", "Togo", "Tunisie", "Zambie", "Zimbabwe"
 ];
+
 
 const availableTypes = [
   "Poterie", "Tapis", "Bijoux", "Textile", "Sculpture sur bois", "Peinture", "Cuivre", "Vannerie",

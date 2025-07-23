@@ -14,7 +14,7 @@ router.post('/boutique', verifyToken, artisanController.createBoutique);
 
 // Artisan products
 router.get('/produits/:userId', artisanController.getArtisanProducts);
-router.post('/produits', verifyToken, artisanController.addProduct);
+router.post('/produits',  artisanController.addProduct);
 router.put('/produits/:id', verifyToken, artisanController.updateProduct);
 router.delete('/produits/:id', verifyToken, artisanController.deleteProduct);
 

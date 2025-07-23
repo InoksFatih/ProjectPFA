@@ -1,9 +1,10 @@
 .product-details {
   max-width: 1200px;
-  margin: 40px auto;
-  padding: 0 20px;
+  margin: 0 auto;
+  padding: 120px 20px 40px; /* top padding added */
   font-family: 'Inter', sans-serif;
 }
+
 
 .back-link {
   display: inline-block;
