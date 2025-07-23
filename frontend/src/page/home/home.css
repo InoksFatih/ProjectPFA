@@ -19,12 +19,12 @@
   content: "";
   position: absolute;
   inset: 0;
-  background-image: url('../../assets/Hero.png'); /* same as before */
+  background-image: url('../../assets/Hero.png'); 
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  filter: blur(4px); /* adjust as needed */
-  transform: scale(1.05); /* optional: to avoid edge blur cutoff */
+  filter: blur(4px); 
+  transform: scale(1.05);
   z-index: 0;
 }
 
@@ -445,4 +445,54 @@
   pointer-events: none;
   background-color: #eee !important;
   border: 2px dashed #ccc;
+}
+.ateliers-preview {
+  background-color: #F8EEDC;
+  padding: 80px 0;
+  text-align: center;
+}
+
+.ateliers-preview .section-title {
+  font-size: 2.5rem;
+  color: #4A2C1A;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.ateliers-preview .section-subtitle {
+  font-size: 1.2rem;
+  color: #4A2C1A;
+  margin-bottom: 40px;
+}
+
+.atelier-card {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.atelier-card:hover {
+  transform: scale(1.04);
+}
+
+.atelier-card img {
+  height: 220px;
+  object-fit: cover;
+}
+
+.video-wrapper {
+  position: relative;
+  overflow: hidden;
+  padding-top: 56.25%;
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
 }

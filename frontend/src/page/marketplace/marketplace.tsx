@@ -133,7 +133,7 @@ src={product.images[0]?.image_url ? `http://localhost:5000${product.images[0].im
                     <Card.Text>
                       <small>{product.type_artisanat}</small>
                     </Card.Text>
-                    <Button variant="primary">Voir plus</Button>
+                    <Button className="voir-plus-btn">Voir plus</Button>
                   </Card.Body>
                 </Card>
                 </Link>

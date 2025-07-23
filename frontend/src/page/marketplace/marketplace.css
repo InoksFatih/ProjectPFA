@@ -105,3 +105,17 @@
   text-decoration: none;
   color: inherit;
 }
+.voir-plus-btn {
+  background-color: #4A2C1A; /* Dark Brown */
+  color: #FFFFFF;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+  font-weight: 500;
+}
+
+.voir-plus-btn:hover {
+  background-color: #4B2E1E; /* Coffee Brown */
+  color: #fff;
+}
