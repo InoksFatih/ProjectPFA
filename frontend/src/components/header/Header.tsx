@@ -1,19 +1,22 @@
 import React, { useEffect, useState, useRef } from 'react';
 import './Header.css';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate , useLocation } from 'react-router-dom';
 import { Contact, House, ShoppingBag, UserCircle, ShoppingCart } from 'lucide-react';
 import defaultProfileImg from '../../assets/img/profile.png';
 import { useCart } from '../../context/CartContext';
+import logo from '../../assets/Logo.png';
+
 
 const Header: React.FC = () => {
   const navigate = useNavigate();
-  const { cartCount, refreshCartCount } = useCart(); // ✅ Use context
+  const { cartCount, refreshCartCount } = useCart(); 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [profileImage, setProfileImage] = useState('');
   const [firstName, setFirstName] = useState('');
   const [showMenu, setShowMenu] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+  const location = useLocation();
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -55,7 +58,13 @@ const Header: React.FC = () => {
     navigate('/');
     window.location.reload();
   };
-
+const handleHomeClick = () => {
+  if (location.pathname === '/') {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  } else {
+    navigate('/');
+  }
+};
   const handleProfileClick = (e: React.MouseEvent<HTMLImageElement>) => {
     e.stopPropagation();
     setShowMenu((prev) => !prev);
@@ -64,14 +73,16 @@ const Header: React.FC = () => {
   return (
     <header className="africart-header">
       <div className="header-inner">
-        <div className="brand" onClick={() => navigate('/')}>AfricArt</div>
-
+       <div className="brand" onClick={handleHomeClick}>
+  <img src={logo} alt="AfricArt Logo" className="brand-logo" />
+  <span className="brand-text">AfricArt</span>
+</div>
         {/* Desktop Nav */}
         <nav className="nav-links d-none d-md-flex">
-          <div className="nav-item" onClick={() => navigate('/')}>
-            <House className="icon" />
-            <span>Accueil</span>
-          </div>
+          <div className="nav-item" onClick={handleHomeClick}>
+  <House className="icon" />
+  <span>Accueil</span>
+</div>
           <div className="nav-item" onClick={() => navigate('/marketplace')}>
             <ShoppingBag className="icon" />
             <span>Marketplace</span>

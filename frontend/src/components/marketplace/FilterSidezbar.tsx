@@ -1,8 +1,6 @@
 import React from 'react';
 import { Accordion, Form } from 'react-bootstrap';
 
-
-
 interface FilterSidebarProps {
   filters: {
     types: string[];
@@ -17,6 +15,7 @@ interface FilterSidebarProps {
   countries: string[];
   minPrice: number;
   maxPrice: number;
+  availableTypes: Set<string>;
 }
 
 const FilterSidebar: React.FC<FilterSidebarProps> = ({
@@ -25,6 +24,7 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
   onChange,
   types,
   countries,
+  availableTypes,
 }) => {
   return (
     <div className="marketplace-sidebar">
@@ -33,14 +33,19 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
         <Accordion.Item eventKey="0">
           <Accordion.Header>Type d'artisanat</Accordion.Header>
           <Accordion.Body>
-            {types.map((type) => (
-              <Form.Check
-                key={type}
-                label={type}
-                checked={filters.types.includes(type)}
-                onChange={() => onToggle('types', type)}
-              />
-            ))}
+            {types.map((type) => {
+              const isAvailable = availableTypes.has(type);
+              return (
+                <Form.Check
+                  key={type}
+                  label={type}
+                  checked={filters.types.includes(type)}
+                  onChange={() => onToggle('types', type)}
+                  disabled={!isAvailable}
+                  className={!isAvailable ? 'text-muted' : ''}
+                />
+              );
+            })}
           </Accordion.Body>
         </Accordion.Item>
 

@@ -29,8 +29,8 @@ const stripeController = {
         payment_method_types: ['card'],
         mode: 'payment',
         line_items: lineItems,
-        success_url: 'http://localhost:5174/success',
-        cancel_url: 'http://localhost:5174/cancel',
+        success_url: 'http://localhost:5173/success',
+        cancel_url: 'http://localhost:5173/cancel',
       });
 
       res.json({ url: session.url });

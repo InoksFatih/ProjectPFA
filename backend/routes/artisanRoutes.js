@@ -14,7 +14,7 @@ router.post('/boutique', verifyToken, artisanController.createBoutique);
 
 // Artisan products
 router.get('/produits/:userId', artisanController.getArtisanProducts);
-router.post('/produits',  artisanController.addProduct);
+router.post('/produits',  verifyToken,artisanController.addProduct);
 router.put('/produits/:id', verifyToken, artisanController.updateProduct);
 router.delete('/produits/:id', verifyToken, artisanController.deleteProduct);
 
@@ -23,7 +23,7 @@ router.delete('/produits/:id', verifyToken, artisanController.deleteProduct);
 router.get('/produits/:productId/images', artisanController.getProductImages);
 router.post(
   '/produits/:productId/images',
-  verifyToken,
+  
   diskUpload.array('images', 5), // key name must match Postman exactly
   artisanController.addProductImagesFromUpload
 );

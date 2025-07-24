@@ -1,5 +1,5 @@
 const ReviewModel = require('../models/ReviewModel');
-const pool = require('../config/db'); // ✅ This is missing and causes the crash
+const pool = require('../config/db');
 
 // Get all reviews for a product
 exports.getReviewsForProduct = async (req, res) => {
@@ -7,8 +7,6 @@ exports.getReviewsForProduct = async (req, res) => {
 
   try {
     const reviews = await ReviewModel.getReviewsByProductId(productId);
-
-    // ✅ Always return an array, even if empty
     return res.status(200).json(reviews);
   } catch (error) {
     console.error("❌ Error fetching reviews:", error);
@@ -16,11 +14,10 @@ exports.getReviewsForProduct = async (req, res) => {
   }
 };
 
-
-// Add a new review (only if logged in)
+// Add a new review
 exports.createReview = async (req, res) => {
   const produit_id = req.params.id;
-  const client_id = req.user.id; // must come from your authMiddleware
+  const user_id = req.user.id;
   const { texte, note } = req.body;
 
   if (!texte || !note) {
@@ -29,8 +26,8 @@ exports.createReview = async (req, res) => {
 
   try {
     const [result] = await pool.query(
-      'INSERT INTO reviews (client_id, produit_id, texte, note) VALUES (?, ?, ?, ?)',
-      [client_id, produit_id, texte, note]
+      'INSERT INTO reviews (user_id, produit_id, texte, note) VALUES (?, ?, ?, ?)',
+      [user_id, produit_id, texte, note]
     );
     res.status(201).json({ message: 'Avis ajouté avec succès.' });
   } catch (err) {
@@ -41,15 +38,15 @@ exports.createReview = async (req, res) => {
 
 // DELETE review
 exports.deleteReview = async (req, res) => {
-  const clientId = req.user?.id;
+  const userId = req.user?.id;
   const { reviewId } = req.params;
 
-  if (!clientId) {
+  if (!userId) {
     return res.status(401).json({ message: "Authentification requise" });
   }
 
   try {
-    const success = await ReviewModel.deleteReviewById(reviewId, clientId);
+    const success = await ReviewModel.deleteReviewById(reviewId, userId);
 
     if (!success) {
       return res.status(403).json({ message: "Non autorisé ou avis introuvable" });
@@ -62,16 +59,15 @@ exports.deleteReview = async (req, res) => {
   }
 };
 
-// ✅ FIX: This must NOT be inside the deleteReview block
 exports.getMyReviews = async (req, res) => {
-  const clientId = req.user?.id;
+  const userId = req.user?.id;
 
-  if (!clientId) {
+  if (!userId) {
     return res.status(401).json({ message: "Authentification requise" });
   }
 
   try {
-    const reviews = await ReviewModel.getReviewsByClientId(clientId);
+    const reviews = await ReviewModel.getReviewsByUserId(userId);
     res.status(200).json(reviews);
   } catch (error) {
     console.error("❌ Error fetching user reviews:", error);

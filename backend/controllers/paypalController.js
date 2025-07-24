@@ -41,8 +41,8 @@ const paypalController = {
             },
           ],
           application_context: {
-            return_url: 'http://localhost:5174/success',
-            cancel_url: 'http://localhost:5174/cancel',
+            return_url: 'http://localhost:5173/success',
+            cancel_url: 'http://localhost:5173/cancel',
           },
         },
         {

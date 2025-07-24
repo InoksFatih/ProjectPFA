@@ -36,10 +36,22 @@
 }
 
 .brand {
-  font-size: 24px;
-  font-weight: 700;
-  color: #4A2C1A;
+  display: flex;
+  align-items: center;
+  gap: 10px;
   cursor: pointer;
+}
+
+.brand-logo {
+  height: 60px;
+  object-fit: contain;
+}
+
+.brand-text {
+  font-size: 26px;
+  font-weight: 700;
+  color: #4A2C1A; /* Dark Brown */
+  font-family: 'Poppins', sans-serif;
 }
 
 .nav-links {

@@ -1,44 +1,40 @@
 const pool = require('../config/db');
 
-// Get all reviews for a specific product
 async function getReviewsByProductId(productId) {
   const [rows] = await pool.query(
-    `SELECT r.*, c.nom AS client_nom
+    `SELECT r.*, u.login AS user_name
      FROM reviews r
-     JOIN clients c ON r.client_id = c.user_id
+     JOIN users u ON r.user_id = u.id
      WHERE r.produit_id = ?`,
     [productId]
   );
   return rows;
 }
 
-// Add a new review
-async function addReview({ client_id, produit_id, texte, note }) {
+async function addReview({ user_id, produit_id, texte, note }) {
   const [result] = await pool.query(
-    `INSERT INTO reviews (client_id, produit_id, texte, note)
+    `INSERT INTO reviews (user_id, produit_id, texte, note)
      VALUES (?, ?, ?, ?)`,
-    [client_id, produit_id, texte, note]
+    [user_id, produit_id, texte, note]
   );
   return result.insertId;
 }
 
-// Delete a review
-async function deleteReviewById(reviewId, clientId) {
+async function deleteReviewById(reviewId, userId) {
   const [result] = await pool.query(
-    `DELETE FROM reviews WHERE id = ? AND client_id = ?`,
-    [reviewId, clientId]
+    `DELETE FROM reviews WHERE id = ? AND user_id = ?`,
+    [reviewId, userId]
   );
   return result.affectedRows > 0;
 }
 
-// Get all reviews submitted by a client
-async function getReviewsByClientId(clientId) {
+async function getReviewsByUserId(userId) {
   const [rows] = await pool.query(
     `SELECT r.*, p.titre AS produit_titre
      FROM reviews r
      JOIN produits p ON r.produit_id = p.id
-     WHERE r.client_id = ?`,
-    [clientId]
+     WHERE r.user_id = ?`,
+    [userId]
   );
   return rows;
 }
@@ -47,5 +43,5 @@ module.exports = {
   getReviewsByProductId,
   addReview,
   deleteReviewById,
-  getReviewsByClientId,
+  getReviewsByUserId,
 };

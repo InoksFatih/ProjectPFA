@@ -22,6 +22,11 @@ interface Product {
   images: ProductImage[];
 }
 
+const ALL_ARTISANAT_TYPES = [
+  'Poterie', 'Tapis', 'Bijoux', 'Textile', 'Sculpture sur bois', 'Peinture', 'Cuivre',
+  'Vannerie', 'Cuir', 'Art en métal', 'Teinture', 'Calligraphie', 'Tissage', 'Verre soufflé',
+];
+
 const Marketplace: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -87,10 +92,8 @@ const Marketplace: React.FC = () => {
             filters={filters}
             onToggle={handleFilterToggle}
             onChange={handleFilterChange}
-            types={[
-              'Poterie', 'Tapis', 'Bijoux', 'Textile', 'Sculpture sur bois', 'Peinture', 'Cuivre',
-              'Vannerie', 'Cuir', 'Art en métal', 'Teinture', 'Calligraphie', 'Tissage', 'Verre soufflé',
-            ]}
+            types={ALL_ARTISANAT_TYPES}
+            availableTypes={new Set(products.map((p) => p.type_artisanat))}
             countries={getUnique('artisan_pays')}
             minPrice={50}
             maxPrice={2000}
@@ -99,7 +102,6 @@ const Marketplace: React.FC = () => {
 
         {/* Product Grid */}
         <Col xs={12} md={9} className="ps-md-4">
-
           <div className="mb-4">
             <input
               type="text"
@@ -117,25 +119,29 @@ const Marketplace: React.FC = () => {
             {paginated.map((product) => (
               <Col xs={12} sm={6} md={4} lg={3} key={product.id}>
                 <Link to={`/produit/${product.id}`} className="product-link">
-                <Card className="product-card">
-                  <Card.Img
-                    variant="top"
-src={product.images[0]?.image_url ? `http://localhost:5000${product.images[0].image_url}` : '/default.jpg'}
-                    alt={product.titre}
-                    className="product-image"
-                  />
-                  <Card.Body>
-                    <Card.Title>{product.titre}</Card.Title>
-                    <Card.Text>{product.prix} MAD</Card.Text>
-                    <Card.Text>
-                      <small>{product.artisan_nom} ({product.artisan_pays})</small>
-                    </Card.Text>
-                    <Card.Text>
-                      <small>{product.type_artisanat}</small>
-                    </Card.Text>
-                    <Button className="voir-plus-btn">Voir plus</Button>
-                  </Card.Body>
-                </Card>
+                  <Card className="product-card">
+                    <Card.Img
+                      variant="top"
+                      src={
+                        product.images[0]?.image_url
+                          ? `http://localhost:5000${product.images[0].image_url}`
+                          : '/default.jpg'
+                      }
+                      alt={product.titre}
+                      className="product-image"
+                    />
+                    <Card.Body>
+                      <Card.Title>{product.titre}</Card.Title>
+                      <Card.Text>{product.prix} MAD</Card.Text>
+                      <Card.Text>
+                        <small>{product.artisan_nom} ({product.artisan_pays})</small>
+                      </Card.Text>
+                      <Card.Text>
+                        <small>{product.type_artisanat}</small>
+                      </Card.Text>
+                      <Button className="voir-plus-btn">Voir plus</Button>
+                    </Card.Body>
+                  </Card>
                 </Link>
               </Col>
             ))}
