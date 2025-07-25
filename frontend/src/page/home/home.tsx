@@ -96,7 +96,7 @@ const ateliers = [
             Découvrez, soutenez et partagez des créations uniques faites avec passion.
           </p>
           <Button className="hero-button" onClick={() => navigate('/marketplace')}>
-            Explorer le Marketplace
+            Explorer la Boutique
           </Button>
         </div>
       </section>
@@ -175,54 +175,35 @@ const ateliers = [
       </section>
 
       {/* Modal for Workshop Preview */}
-      <Modal show={showModal} onHide={() => setShowModal(false)} size="lg" centered>
-        <Modal.Header closeButton>
-          <Modal.Title>{selectedWorkshop?.title}</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <div className="video-wrapper">
-           <video
-  width="100%"
-  height="auto"
-  controls
-  style={{ borderRadius: '12px' }}
+      <Modal
+  show={showModal}
+  onHide={() => setShowModal(false)}
+  size="lg"
+  centered
+  className="custom-modal" // add this
 >
-  <source src={selectedWorkshop?.video} type="video/mp4" />
-  Your browser does not support the video tag.
-</video>
+  <Modal.Header closeButton>
+    <Modal.Title>{selectedWorkshop?.title}</Modal.Title>
+  </Modal.Header>
+  <Modal.Body>
+    <div className="video-wrapper">
+      <video width="100%" height="auto" controls style={{ borderRadius: '12px' }}>
+        <source src={selectedWorkshop?.video} type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <p className="mt-3">
+      Découvrez une introduction gratuite. Pour débloquer l’atelier complet, procédez au paiement sécurisé.
+    </p>
+  </Modal.Body>
+  <Modal.Footer>
+    <Button variant="dark" onClick={handleUnlock}>
+      Débloquer le contenu complet
+    </Button>
+  </Modal.Footer>
+</Modal>
 
-          </div>
-          <p className="mt-3">
-            Découvrez une introduction gratuite. Pour débloquer l’atelier complet, procédez au paiement sécurisé.
-          </p>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="dark" onClick={handleUnlock}>
-            Débloquer le contenu complet
-          </Button>
-        </Modal.Footer>
-      </Modal>
-
-      {/* Featured Products */}
-      <section className="featured">
-        <Container>
-          <h2>Produits en vedette</h2>
-          <Row>
-            {[1, 2, 3].map((p) => (
-              <Col md={4} key={p}>
-                <Card className="product-card">
-                  <Card.Img variant="top" src={`/images/product-${p}.jpg`} />
-                  <Card.Body>
-                    <Card.Title>Produit {p}</Card.Title>
-                    <Card.Text>Artisan: Nom</Card.Text>
-                    <Button variant="dark" size="sm">Voir</Button>
-                  </Card.Body>
-                </Card>
-              </Col>
-            ))}
-          </Row>
-        </Container>
-      </section>
+      
 
       {/* Testimonials */}
       <section className="testimonials-slider">
@@ -239,7 +220,7 @@ const ateliers = [
             </div>
             <Swiper
               modules={[Pagination, Autoplay, Navigation]}
-              spaceBetween={30}
+              spaceBetween={40}
               slidesPerView={1}
               loop={true}
               navigation={{

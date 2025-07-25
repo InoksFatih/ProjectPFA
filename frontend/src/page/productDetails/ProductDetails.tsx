@@ -103,7 +103,7 @@ const { refreshCartCount } = useCart();
   if (notFound) {
     return (
       <div className="not-found">
-        Produit non trouvé. <Link to="/marketplace">Retour au Marketplace</Link>.
+        Produit non trouvé. <Link to="/marketplace">Retour au Boutique</Link>.
       </div>
     );
   }
@@ -112,7 +112,7 @@ const { refreshCartCount } = useCart();
 
   return (
     <div className="product-details">
-      <Link to="/marketplace" className="back-link">← Retour au Marketplace</Link>
+      <Link to="/marketplace" className="back-link">← Retour au Boutique</Link>
 
       <div className="details-content">
         <div className="image-section">

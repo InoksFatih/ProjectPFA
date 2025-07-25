@@ -1,0 +1,63 @@
+.dashboard-wrapper {
+  display: flex;
+  min-height: 100vh;
+  font-family: 'Poppins', sans-serif;
+}
+
+.dashboard-sidebar {
+  width: 240px;
+  background-color: #4A2C1A;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 1rem;
+}
+
+.dashboard-sidebar .logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  cursor: pointer;
+}
+
+.dashboard-sidebar .menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex-grow: 1;
+}
+
+.dashboard-sidebar .menu li {
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.dashboard-sidebar .menu li.active,
+.dashboard-sidebar .menu li:hover {
+  background-color: #E3D5C1;
+  color: #4A2C1A;
+}
+
+.dashboard-sidebar .logout {
+  background: none;
+  border: 1px solid white;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.dashboard-sidebar .logout:hover {
+  background-color: #E3D5C1;
+  color: #4A2C1A;
+}
+
+.dashboard-main {
+  flex-grow: 1;
+  background-color: #F8EEDC;
+  padding: 2rem;
+}

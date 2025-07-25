@@ -11,7 +11,8 @@ html, body, #root {
   justify-content: center;
   font-family: 'Poppins', sans-serif;
   text-align: left;
-  padding: 60px 20px;
+    padding: 80px 20px 20px 20px; /* same logic */
+
   box-sizing: border-box;
 
   /* 👇 THESE LINES ARE CRITICAL */

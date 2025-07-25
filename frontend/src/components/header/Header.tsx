@@ -85,7 +85,7 @@ const handleHomeClick = () => {
 </div>
           <div className="nav-item" onClick={() => navigate('/marketplace')}>
             <ShoppingBag className="icon" />
-            <span>Marketplace</span>
+            <span>Boutique</span>
           </div>
           <div className="nav-item" onClick={() => navigate('/ateliers')}>
             <UserCircle className="icon" />
@@ -146,7 +146,7 @@ const handleHomeClick = () => {
       {isMobileMenuOpen && (
         <div className="mobile-menu d-md-none" ref={menuRef}>
           <div className="mobile-nav-item" onClick={() => navigate('/')}>Accueil</div>
-          <div className="mobile-nav-item" onClick={() => navigate('/marketplace')}>Marketplace</div>
+          <div className="mobile-nav-item" onClick={() => navigate('/marketplace')}>Boutique</div>
           <div className="mobile-nav-item" onClick={() => navigate('/ateliers')}>Ateliers</div>
           <div className="mobile-nav-item" onClick={() => navigate('/contact')}>Contact</div>
 

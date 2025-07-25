@@ -14,6 +14,8 @@ const reviewRoutes = require('./routes/reviewRoutes');
 const panierRoutes = require('./routes/panierRoutes');
 const stripeRoutes = require('./routes/stripeRoutes');
 const paypalRoutes = require('./routes/paypalRoutes');
+const contactRoutes = require('./routes/contactRoutes');
+const dashboardRoutes = require('./routes/dashboardRoutes');
 
 
 const PORT = process.env.PORT || 5000;
@@ -36,6 +38,8 @@ app.use('/api/reviews', reviewRoutes);
 app.use('/api/panier', panierRoutes);
 app.use('/api/stripe', stripeRoutes);
 app.use('/api/paypal', paypalRoutes);
+app.use('/api/contact', contactRoutes);
+app.use('/api/dashboard', dashboardRoutes);
 
 // Test route
 app.get('/', async (req, res) => {

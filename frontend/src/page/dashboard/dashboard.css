@@ -1,0 +1,117 @@
+/* Optional: override Bootstrap root font if needed */
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #F8EEDC;
+}
+
+/* Sidebar */
+.dashboard-sidebar {
+  background-color: #4A2C1A;
+  color: white;
+  min-height: 100vh;
+  padding: 1.5rem;
+}
+
+.dashboard-sidebar .logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+}
+
+.dashboard-sidebar .nav-link {
+  color: white;
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.5rem;
+  border-radius: 0.5rem;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.dashboard-sidebar .nav-link:hover,
+.dashboard-sidebar .nav-link.active {
+  background-color: #6d4129;
+}
+
+.dashboard-sidebar .logout-btn {
+  border: none;
+  background: transparent;
+  color: white;
+  font-weight: 500;
+  padding-left: 0;
+  margin-top: 2rem;
+}
+
+/* Dashboard Main */
+.dashboard-main {
+  padding: 120px 40px 40px 40px; /* same as marketplace */
+  background-color: #F8EEDC;
+  font-family: 'Poppins', sans-serif;
+  min-height: 100vh;
+}
+/* Cards */
+.dashboard-cards .card {
+  border: none;
+  border-radius: 0.75rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.dashboard-cards .card .card-title {
+  color: #4A2C1A;
+  font-weight: 600;
+}
+
+.dashboard-cards .card .card-text {
+  font-size: 1.5rem;
+  color: #4A2C1A;
+}
+
+/* Orders Table */
+.orders-box {
+  background-color: white;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  margin-top: 2rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.orders-box table th {
+  color: #4A2C1A;
+  font-weight: 600;
+}
+
+.orders-box table td {
+  color: #333;
+}
+
+/* Chart Placeholder */
+.chart-box {
+  background-color: white;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  margin-top: 2rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+.dashboard-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+.dashboard-cards .card {
+  flex: 1 1 250px;
+  padding: 1.25rem;
+  background-color: #fff;
+  border: none;
+  border-radius: 0.75rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+.card-value {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #4A2C1A;
+}
+.card-label {
+  font-size: 1rem;
+  color: #6d4129;
+  margin-top: 0.25rem;
+}

@@ -39,7 +39,7 @@ const Footer = () => {
                 <div className="col">
                   <h5>Liens utiles</h5>
                   <p><a href="#">Accueil</a></p>
-                  <p><a href="#">Marketplace</a></p>
+                  <p><a href="#">Boutique</a></p>
                   <p><a href="#">Ateliers</a></p>
                   <p><a href="#">Contact</a></p>
                 </div>

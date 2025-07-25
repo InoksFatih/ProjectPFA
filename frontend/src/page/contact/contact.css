@@ -1,0 +1,45 @@
+.contact-card {
+  background-color: #fefbf7;
+  border-radius: 16px;
+  border: none;
+  padding: 40px 30px;
+}
+
+.contact-title {
+  font-family: 'Inria Serif', serif;
+  font-weight: 700;
+  color: #4A2C1A;
+}
+
+.contact-subtitle {
+  font-family: 'Inter', sans-serif;
+  color: #6e4c38;
+  font-size: 1rem;
+}
+
+.btn-africart {
+  background-color: #4A2C1A;
+  color: #F8EEDC;
+  font-weight: 600;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.btn-africart:hover {
+  background-color: #3b2013;
+  color: #fff;
+}
+
+.status-msg {
+  color: #4A2C1A;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+.contact-page-container {
+  padding: 80px 20px 20px 20px; /* same logic */
+  background-color: #F8EEDC;
+  font-family: 'Poppins', sans-serif;
+  min-height: 100vh;
+}

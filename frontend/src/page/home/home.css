@@ -245,93 +245,81 @@
   color: #4A2C1A;
 }
 
-/* === Featured Products === */
-.featured {
-  padding: 80px 0;
-  background-color: #ffffff;
-}
-.featured h2 {
-  font-size: 2.5rem;
-  margin-bottom: 40px;
-  text-align: center;
-  color: #4A2C1A;
-}
-.product-card {
-  border: none;
-  border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  transition: transform 0.3s ease;
-}
-.product-card:hover {
-  transform: scale(1.03);
-}
-.product-card img {
-  height: 240px;
-  object-fit: cover;
-}
-.product-card .card-title {
-  font-weight: 600;
-  font-size: 1.1rem;
-  color: #4A2C1A;
-}
 
 /* === Testimonials Slider === */
 .testimonials-slider {
-  background: #F8EEDC;
-  padding: 80px 0;
+  background: #ffffff;
+  padding: 100px 0;
   text-align: center;
   color: #4A2C1A;
 }
+
 .testimonials-title {
-  font-size: 2.5rem;
-  font-weight: 700;
-  margin-bottom: 10px;
+  font-size: 2.8rem;
+  font-weight: 800;
+  margin-bottom: 8px;
 }
+
 .testimonials-subtitle {
   font-size: 1.2rem;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
+  color: #6e4c38;
 }
+
 .underline {
   width: 60px;
   height: 4px;
   background-color: #4A2C1A;
-  margin: 0 auto 40px;
+  margin: 0 auto 50px;
   border-radius: 2px;
 }
+
+.testimonial-swiper-wrapper {
+  padding: 0 60px;
+}
+
 .testimonial-card {
-  background: #fff;
-  padding: 30px 20px;
-  border-radius: 12px;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
+  background: #F8EEDC;
+  padding: 40px 30px;
+  border-radius: 16px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   transition: transform 0.3s ease;
-  min-height: 380px;
+  min-height: 400px;
+  max-width: 95%;
+  margin: 0 auto;
 }
+
 .testimonial-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-6px);
 }
+
 .testimonial-text {
   font-style: italic;
-  margin-bottom: 25px;
-  flex-grow: 1;
+  line-height: 1.8;
+  font-size: 1.05rem;
+  color: #3d2a1c;
+  margin-bottom: 35px;
 }
+
 .testimonial-img {
-  width: 70px;
-  height: 70px;
+  width: 75px;
+  height: 75px;
   border-radius: 50%;
   border: 3px solid #E3D5C1;
   object-fit: cover;
   margin: 0 auto 10px;
 }
+
 .testimonial-name {
   font-size: 1.1rem;
-  font-weight: 600;
-  color: #4A2C1A;
+  font-weight: 700;
   margin-bottom: 4px;
+  color: #4A2C1A;
 }
+
 .testimonial-role {
   font-size: 0.95rem;
   opacity: 0.8;
@@ -339,15 +327,16 @@
 
 /* Swiper Dots */
 .swiper-pagination-bullets {
-  margin-top: 20px;
+  margin-top: 30px;
 }
 .swiper-pagination-bullet {
   background: #4A2C1A;
-  opacity: 0.4;
+  opacity: 0.3;
 }
 .swiper-pagination-bullet-active {
   opacity: 1;
 }
+
 
 /* === Newsletter Section === */
 .newsletter {
@@ -464,6 +453,21 @@
   color: #4A2C1A;
   margin-bottom: 40px;
 }
+.custom-modal .modal-body {
+  max-height: 70vh;
+  overflow-y: auto;
+}
+.video-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.video-wrapper video {
+  width: 100%;
+  max-height: 400px;
+  border-radius: 12px;
+  object-fit: cover;
+}
 
 .atelier-card {
   border-radius: 12px;
@@ -485,7 +489,7 @@
 .video-wrapper {
   position: relative;
   overflow: hidden;
-  padding-top: 56.25%;
+  padding-top: 7.25%;
 }
 
 .video-wrapper iframe {
